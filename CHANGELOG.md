@@ -1,3 +1,6 @@
+# [2.2.2] - 18 Nov 2025
+- Added way to unselect button programmatically
+
 # [2.2.1] - 22 Sep 2023
 - Added TextStyle for selected Button
 
