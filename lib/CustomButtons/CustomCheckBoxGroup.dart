@@ -83,7 +83,7 @@ class CustomCheckBoxGroup<T> extends StatefulWidget {
 
   final List<String> buttonLables;
 
-  final void Function(List<T>) checkBoxButtonValues;
+  final ValueChanged<List<T>> checkBoxButtonValues;
 
   ///Selected Color of button
   final Color selectedColor;
@@ -154,11 +154,15 @@ class CustomCheckBoxGroupState<T> extends State<CustomCheckBoxGroup<T>> {
   /// This function will select the button and update the state
   /// THis can be access from outside to change the selected value programatically
   /// Please note that this will also call the [checkBoxButtonValues] callback
-  void selectButton(T selectedValue) {
-    if (selectedValues.contains(selectedValue)) {
-      selectedValues.remove(selectedValue);
+  void selectButton(T? selectedValue) {
+    if (selectedValue == null) {
+      selectedValues.clear();
     } else {
-      selectedValues.add(selectedValue);
+      if (selectedValues.contains(selectedValue)) {
+        selectedValues.remove(selectedValue);
+      } else {
+        selectedValues.add(selectedValue);
+      }
     }
     if (mounted) setState(() {});
     widget.checkBoxButtonValues(selectedValues);
